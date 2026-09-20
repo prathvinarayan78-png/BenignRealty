@@ -1,6 +1,6 @@
 # Benign Realty
 
-A bespoke, responsive real-estate website for Delhi & NCR. Inspired by Fort Vega’s architectural, spacious presentation, with an original Benign identity, sculptural imagery and a soft blue / sage palette.
+A bespoke, responsive real-estate website for Delhi & NCR. Inspired by Fort Vega’s architectural, spacious presentation, with an original Benign identity, sculptural imagery and a default dark charcoal-green / ivory / champagne palette.
 
 ## Run locally
 
@@ -22,11 +22,13 @@ Deploy `dist/` to any static hosting provider. No API or database is needed for 
 
 ## Features
 
+- Dark mode is the default on first paint, regardless of OS colour preference. Navigation, collection controls, photo placeholders, native form controls and dialogs share the dark palette; no theme preference or toggle is required.
 - Original Benign Realty identity and Delhi-focused content, with an original interlocking BR monogram, restrained champagne detailing, a precision-spaced Manrope wordmark and a matching favicon.
 - Lenis smooth-wheel and anchor scrolling; native mobile touch scrolling; a desktop hero that pins briefly while its architecture zooms and frames itself.
 - Section copy is visible by default. Optional entrance motion never hides it or depends on an IntersectionObserver callback to make it readable.
 - Reversible collection-image reveals, scroll-linked brand typography, a moving editorial text band, Delhi parallax, a settling closing composition and a page-reading progress indicator.
 - A three-chapter, scroll-driven journey with a sticky desktop stage, continuous image wipes, reversible chapter progression and keyboard-accessible chapter controls. Touch devices, short viewports and reduced-motion users get all three chapters in normal document flow.
+- Subtle mobile scroll depth in the hero, journey imagery and founder placeholders, plus a sticky chapter guide with live reading progress and working chapter shortcuts. Mobile stays in natural document flow; reduced-motion disables the added movement.
 - Mobile-first refinements: single-column phone property finder, two-column tablet collections, readable type, 44px controls, 16px form fields, scrollable dialogs with a sticky close button, and a focus-managed, scroll-locking mobile menu.
 - A founders section introducing Talib Khan and Prathvi Narayan, with reserved portrait spaces and original editorial thoughts on home. Set each `portrait` path in `src/Founders.tsx` when approved photos are available.
 - Six **illustrative** property concepts with location, residential/commercial and indicative-budget filters.
@@ -46,7 +48,7 @@ npx playwright install --with-deps chromium
 npm test
 ```
 
-The 42 Playwright checks cover desktop and mobile layouts, imagery, filters, empty results, saved-property persistence, dialogs, accordion expansion/collapse, neighbourhood navigation, input validation, enquiry downloads, the mobile menu, privacy information and Lenis navigation/scroll locking. They also check the reversible hero, continuous journey wipes, dynamic collection-card reveals, typography movement, chapter controls, dynamic reduced-motion changes, 320px–1024px layouts, landscape rotation, mobile-menu focus/scroll locking, long-form dismissal, and visible content from Our Story through the footer even when reveal observers are silent or unavailable.
+The 50 Playwright checks cover desktop and mobile layouts, imagery, filters, empty results, saved-property persistence, dialogs, accordion expansion/collapse, neighbourhood navigation, input validation, enquiry downloads, the mobile menu, privacy information and Lenis navigation/scroll locking. They also check the reversible hero, continuous journey wipes, dynamic collection-card reveals, typography movement, chapter controls, dynamic reduced-motion changes, 320px–1024px layouts, landscape rotation, mobile-menu focus/scroll locking, long-form dismissal, and visible content from Our Story through the footer even when reveal observers are silent or unavailable. Dark-theme checks cover both OS colour preferences, readable core surfaces and form controls, mobile chapter tracking in both scroll directions, working shortcuts and reduced-motion fallbacks.
 
 When testing with an existing Chromium binary, set `CHROMIUM_PATH=/path/to/chromium`. Systems with custom shared-library locations may also require `LD_LIBRARY_PATH`.
 
@@ -66,9 +68,12 @@ When testing with an existing Chromium binary, set `CHROMIUM_PATH=/path/to/chrom
 - `src/useScrollScenes.ts` — frame-batched progress, text-reveal and parallax updates
 - `src/data.ts` — illustrative property concepts and service copy
 - `src/styles.css` — responsive visual system and reduced-motion rules
+- `src/theme.css` — default dark colour system, native controls and dialogs
+- `src/mobile-motion.css` — progressive mobile depth and sticky chapter guide
 - `public/images/` — locally served optimised imagery
 - `tests/site.spec.ts` — desktop/mobile functional checks
 - `tests/scroll-responsive.spec.ts` — scroll scenes, narrow layouts and accessible mobile interactions
 - `tests/visibility.spec.ts` — painted-content regressions with motion enabled and observers disabled
+- `tests/dark-mobile.spec.ts` — default dark theme, core contrast and mobile motion/navigation
 
 See `ASSETS.md` for imagery and typography details.

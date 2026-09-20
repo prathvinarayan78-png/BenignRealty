@@ -118,7 +118,7 @@ function App() {
         autoRaf: true,
         smoothWheel: !motion.matches,
         lerp: 0.075,
-        anchors: { offset: 0, duration: motion.matches ? 0 : 1.4 },
+        anchors: { offset: 0, duration: 1.4, immediate: motion.matches },
         stopInertiaOnNavigate: true,
       });
       if (document.body.style.overflow === "hidden") lenis.current.stop();
@@ -237,9 +237,8 @@ function App() {
     lenis.current?.start();
     lenis.current?.scrollTo(id, {
       offset: 0,
-      duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? 0
-        : 1.6,
+      duration: 1.6,
+      immediate: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     });
   };
   const openContact = (interest?: string) => {
@@ -768,7 +767,11 @@ function App() {
 
         <ScrollJourney
           onNavigate={(target) =>
-            lenis.current?.scrollTo(target, { duration: 1.1 })
+            lenis.current?.scrollTo(target, {
+              duration: 1.1,
+              immediate: window.matchMedia("(prefers-reduced-motion: reduce)")
+                .matches,
+            })
           }
         />
 

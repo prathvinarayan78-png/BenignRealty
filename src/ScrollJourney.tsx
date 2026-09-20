@@ -55,32 +55,49 @@ export function ScrollJourney({
         enabled && travel > 0
           ? Math.max(0, Math.min(1, (86 - rect.top) / travel))
           : 0;
-      element.style.setProperty("--journey-progress", String(progress));
-      setActive(Math.min(2, Math.floor(progress * 3)));
-      element
-        .querySelectorAll<HTMLElement>(".journey-chapter")
-        .forEach((chapter, index) => {
-          const chapterRect = enabled ? null : chapter.getBoundingClientRect();
-          const local = enabled
-            ? Math.max(0, Math.min(1, progress * 3 - index))
-            : reduced.matches
-              ? 1
-              : Math.max(
-                  0,
-                  Math.min(
-                    1,
-                    (window.innerHeight - chapterRect!.top) /
-                      (window.innerHeight + chapterRect!.height),
-                  ),
-                );
-          chapter.style.setProperty("--chapter-progress", String(local));
-          // Incoming imagery is revealed by scroll position, not a timed crossfade.
-          const wipe =
-            !enabled || index === 0
-              ? 1
-              : Math.max(0, Math.min(1, (progress - index / 3 + 0.065) / 0.09));
-          chapter.style.setProperty("--chapter-wipe", String(wipe));
+      const measurements = Array.from(
+        element.querySelectorAll<HTMLElement>(".journey-chapter"),
+      ).map((chapter) => ({ chapter, rect: chapter.getBoundingClientRect() }));
+      let current = Math.min(2, Math.floor(progress * 3));
+      if (!enabled) {
+        current = 0;
+        measurements.forEach(({ rect }, index) => {
+          if (rect.top <= window.innerHeight * 0.5) current = index;
         });
+      }
+      element.style.setProperty("--journey-progress", String(progress));
+      setActive(current);
+      measurements.forEach(({ chapter, rect: chapterRect }, index) => {
+        const local = enabled
+          ? Math.max(0, Math.min(1, progress * 3 - index))
+          : reduced.matches
+            ? 1
+            : Math.max(
+                0,
+                Math.min(
+                  1,
+                  (window.innerHeight - chapterRect.top) /
+                    (window.innerHeight + chapterRect.height),
+                ),
+              );
+        const read = Math.max(
+          0,
+          Math.min(
+            1,
+            (window.innerHeight * 0.72 - chapterRect.top) /
+              Math.max(1, chapterRect.height),
+          ),
+        );
+        chapter.style.setProperty("--chapter-progress", String(local));
+        chapter.style.setProperty("--chapter-read", String(read));
+        element.style.setProperty(`--chapter-read-${index}`, String(read));
+        // Incoming imagery is revealed by scroll position, not a timed crossfade.
+        const wipe =
+          !enabled || index === 0
+            ? 1
+            : Math.max(0, Math.min(1, (progress - index / 3 + 0.065) / 0.09));
+        chapter.style.setProperty("--chapter-wipe", String(wipe));
+      });
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -104,6 +121,23 @@ export function ScrollJourney({
 
   const navigate = (index: number) => {
     if (!root.current) return;
+    if (!pinned) {
+      const chapter =
+        root.current.querySelectorAll<HTMLElement>(".journey-chapter")[index];
+      if (!chapter) return;
+      const guideHeight =
+        root.current.querySelector<HTMLElement>(".journey-mobile-progress")
+          ?.offsetHeight ?? 0;
+      const headerHeight = window.innerWidth <= 560 ? 76 : 86;
+      onNavigate(
+        chapter.getBoundingClientRect().top +
+          window.scrollY -
+          headerHeight -
+          guideHeight -
+          16,
+      );
+      return;
+    }
     const top = root.current.getBoundingClientRect().top + window.scrollY;
     const travel = root.current.offsetHeight - (window.innerHeight - 86);
     onNavigate(top - 86 + (index / 3 + 0.08) * travel);
@@ -163,10 +197,36 @@ export function ScrollJourney({
             </div>
           )}
         </div>
+        {!pinned && (
+          <nav
+            className="journey-mobile-progress"
+            aria-label="Journey chapters"
+          >
+            {chapters.map((chapter, index) => (
+              <button
+                key={chapter.label}
+                aria-current={active === index ? "step" : undefined}
+                aria-controls={`journey-chapter-${index + 1}`}
+                onClick={() => navigate(index)}
+              >
+                <span className="journey-mobile-number">0{index + 1}</span>
+                <span>{chapter.label.replace("The ", "")}</span>
+                <span className="journey-mobile-track" aria-hidden="true">
+                  <span
+                    style={{
+                      transform: `scaleX(var(--chapter-read-${index}, 0))`,
+                    }}
+                  />
+                </span>
+              </button>
+            ))}
+          </nav>
+        )}
         <div className="journey-panels">
           {chapters.map((chapter, index) => (
             <article
               className={`journey-chapter ${active === index ? "is-current" : ""}`}
+              id={`journey-chapter-${index + 1}`}
               style={{ zIndex: index + 1 }}
               key={chapter.label}
               aria-hidden={pinned && active !== index ? true : undefined}

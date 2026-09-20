@@ -1,0 +1,485 @@
+/* Dark is the default, independent of the device's preferred colour scheme. */
+:root {
+  color-scheme: dark;
+  --surface: #101b19;
+  --surface-raised: #172622;
+  --surface-soft: #1d2e28;
+  --ink: #f1efe5;
+  --muted: #afbeb2;
+  --sage: #a4bda7;
+  --line: #33463c;
+  --accent: #d7bd91;
+  --accent-hover: #e8d2ae;
+  --blue: var(--accent);
+  color: var(--ink);
+  background: var(--surface);
+}
+body {
+  background: var(--surface);
+}
+::selection {
+  background: var(--accent);
+  color: #17241e;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-color: var(--accent);
+}
+.skip-link {
+  background: var(--surface-raised);
+  color: var(--ink);
+}
+.site-header {
+  color: var(--ink);
+}
+.site-header.is-scrolled,
+.site-header.menu-is-open {
+  background: #101b19f2;
+  box-shadow: 0 1px 0 #b8c9ae20;
+}
+.brand,
+.brand-light {
+  color: var(--ink);
+  --brand-accent: var(--accent);
+}
+.brand-descriptor,
+.brand-light .brand-descriptor {
+  color: #c3cbbb;
+}
+.brand-copy,
+.brand-light .brand-copy {
+  border-color: #d7bd914a;
+}
+.talk-button > span,
+.scroll-cue > span,
+.round-link,
+.back-top {
+  border-color: #9aad965c;
+}
+.talk-button:hover > span,
+.round-link:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #17241e;
+}
+.reading-progress {
+  background: var(--accent);
+}
+.mobile-nav {
+  background: #14221ff5;
+  box-shadow: 0 20px 40px #0004;
+}
+.mobile-nav > button {
+  color: var(--accent);
+}
+.menu-backdrop {
+  background: #030b0999;
+}
+
+/* Architecture stays photographic; a dark grade keeps foreground text legible. */
+.hero,
+.hero-scroll,
+.hero-scroll[data-pinned="true"] .hero {
+  background: #0d191b;
+}
+.hero-image {
+  filter: brightness(0.65) saturate(0.65);
+}
+.hero-wash {
+  background:
+    linear-gradient(
+      90deg,
+      #0d191bf2 3%,
+      #0d191bc7 33%,
+      #0d191b40 66%,
+      #0d191b10
+    ),
+    linear-gradient(0deg, #0d191b80, transparent 45%);
+}
+.hero-eyebrow,
+.hero-content > p,
+.hero-location,
+.scroll-cue {
+  color: #c0cbc4;
+}
+.little-line {
+  background: var(--accent);
+}
+.life-word svg {
+  stroke: var(--accent);
+}
+.visual-caption {
+  background: #14211d8c;
+  border-color: #dac9a459;
+  color: var(--ink);
+}
+.primary-button,
+.search-button,
+.contact-content > .primary-button {
+  background: var(--accent);
+  color: #17241e;
+  font-weight: 600;
+}
+.primary-button:hover,
+.search-button:hover,
+.contact-content > .primary-button:hover {
+  background: var(--accent-hover);
+  color: #17241e;
+}
+.finder-section {
+  background: #13211e;
+}
+.finder-heading > span:last-child,
+.property-finder > label > span,
+.select-wrap svg {
+  color: var(--muted);
+}
+.property-finder > label,
+.property-finder > label:nth-child(2),
+.property-finder > label:nth-child(3) {
+  border-color: var(--line);
+}
+.select-wrap select {
+  color: var(--ink);
+}
+select option {
+  background: var(--surface-raised);
+  color: var(--ink);
+}
+
+/* Editorial sections and collection states. */
+h2 > span,
+.journey-intro > h2 > span,
+.delhi-content h2 > span,
+.contact-content > h2 > span,
+.founders-intro h2 > span {
+  color: var(--sage);
+}
+.section-kicker,
+.section-number,
+.values-row small,
+.section-title-row > p,
+.about-bottom p {
+  color: var(--muted);
+}
+.values-row svg {
+  color: var(--accent);
+}
+.scroll-word {
+  color: var(--ink);
+  background-image: linear-gradient(
+    90deg,
+    var(--ink) var(--word-fill),
+    #8b9f91 var(--word-fill)
+  );
+}
+.scroll-word.word-sage {
+  background-image: linear-gradient(
+    90deg,
+    #b2c9b0 var(--word-fill),
+    #8b9f91 var(--word-fill)
+  );
+}
+.properties-section {
+  background: var(--surface-raised);
+}
+.collection-toolbar,
+.collection-footer,
+.property-specs,
+.saved-toggle > span,
+.service,
+.service-note,
+.service-tags > span,
+.neighbourhoods > button,
+.founder-name-row {
+  border-color: var(--line);
+}
+.property-tabs button,
+.saved-toggle,
+.filter-summary,
+.property-meta,
+.property-meta > svg,
+.property-specs,
+.property-budget > span,
+.collection-footer p,
+.empty-state p {
+  color: var(--muted);
+}
+.property-tabs button.active {
+  background: var(--accent);
+  color: #17241e;
+}
+.property-tabs button:hover:not(.active) {
+  background: #2b3d32;
+  color: var(--ink);
+}
+.tab-dot {
+  background: #31523b;
+}
+.saved-toggle.active,
+.property-title:hover,
+.neighbourhoods > button:hover {
+  color: var(--accent);
+}
+.property-badge,
+.save-button {
+  background: #13231fe8;
+  color: #f1efe5;
+  border: 1px solid #b2c5b650;
+}
+.save-button.is-saved {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #17241e;
+}
+.property-budget {
+  color: var(--ink);
+}
+.property-specs > i {
+  background: #a1b29f;
+}
+.text-link {
+  border-color: #94a48e80;
+}
+.expertise-intro > p,
+.service-toggle > svg,
+.service-number,
+.service-content p,
+.service-tags > span,
+.service-note {
+  color: var(--muted);
+}
+.service-content h3 {
+  color: var(--sage);
+}
+
+/* Journey, city, founders and the closing composition. */
+.perspective-ribbon {
+  background: #0c1714;
+  border-block: 1px solid #344538;
+  color: var(--ink);
+}
+.ribbon-overline,
+.ribbon-underline {
+  color: var(--muted);
+  border-color: var(--line);
+}
+.ribbon-track > span:last-child {
+  color: var(--sage);
+}
+.ribbon-separator {
+  color: var(--accent);
+}
+.scroll-journey,
+.scroll-journey[data-pinned="true"] .journey-stage {
+  background: #1a2a24;
+}
+.journey-intro > .section-kicker,
+.journey-intro > p,
+.journey-chapter p,
+.journey-chapter-label,
+.journey-navigation button,
+.journey-step-number,
+.journey-scroll-hint {
+  color: var(--muted);
+}
+.journey-image {
+  background: #23382b;
+}
+.journey-navigation button[aria-current="step"] {
+  color: var(--accent);
+}
+.journey-step-track {
+  background: #465b48;
+}
+.journey-step-track > span {
+  background: var(--accent);
+}
+.delhi-section {
+  background: #16251f;
+}
+.delhi-content .section-kicker,
+.delhi-content > p,
+.neighbourhoods > button svg,
+.neighbourhood-note {
+  color: var(--muted);
+}
+.delhi-image > img {
+  filter: saturate(0.55) brightness(0.78);
+}
+.delhi-coordinates,
+.delhi-image-label {
+  color: #e3e9df;
+}
+.delhi-image-overlay {
+  background: linear-gradient(0deg, #08140fee, transparent 70%, #0a171c40);
+}
+.founders-section {
+  background: #121f1b;
+}
+.founders-intro .section-kicker,
+.founders-intro > p,
+.founders-signature,
+.founder-name-row > span,
+.founder-thought .eyebrow,
+.founder-thought p {
+  color: var(--muted);
+}
+.founders-signature-line {
+  background: var(--accent);
+}
+.founder-portrait {
+  background: #233229;
+}
+.founder-photo-placeholder {
+  background: radial-gradient(
+    ellipse at 30% 20%,
+    #354537 0%,
+    #24352a 65%,
+    #1d2d23
+  );
+}
+.founder-card:nth-child(2) .founder-photo-placeholder {
+  background: radial-gradient(
+    ellipse at 70% 20%,
+    #3a4033 0%,
+    #2a3226 65%,
+    #222c21
+  );
+}
+.founder-placeholder-frame {
+  border-color: #9baa8450;
+}
+.founder-placeholder-frame::before,
+.founder-placeholder-frame::after {
+  border-color: #c0b28b;
+}
+.founder-initials {
+  color: #b7c3a36b;
+}
+.founder-photo-label,
+.founder-portrait-index {
+  color: #bcc7ae;
+}
+.contact-section {
+  background: #16251f;
+}
+.contact-content > .eyebrow,
+.contact-content > p,
+.contact-location {
+  color: var(--muted);
+}
+.contact-orbit > span {
+  border-color: #57674938;
+}
+.status-dot {
+  background: #c2d2a7;
+}
+.site-footer {
+  background: #0b1612;
+  color: var(--ink);
+}
+.footer-top > p,
+.footer-bottom {
+  color: var(--muted);
+}
+.footer-links a,
+.footer-links button,
+.footer-bottom > button,
+.back-top {
+  color: #d0d8c6;
+}
+.footer-wordmark {
+  color: #a3b59b30;
+}
+
+/* Every dialog and native form control uses the same dark palette. */
+.site-dialog {
+  color-scheme: dark;
+  background: #172620;
+  color: var(--ink);
+  border: 1px solid #455442;
+  box-shadow: 0 24px 100px #0009;
+}
+.site-dialog::backdrop {
+  background: #030a07b8;
+}
+.dialog-close {
+  background: #24382df2;
+  color: var(--ink);
+  border: 1px solid #a7b29140;
+}
+.detail-content > .eyebrow,
+.detail-specs > span,
+.detail-specs small,
+.detail-content > p,
+.contact-dialog-content > .eyebrow,
+.contact-dialog-content > p,
+.enquiry-form label,
+.form-note,
+.enquiry-success > p:not(.form-note),
+.privacy-content p {
+  color: var(--muted);
+}
+.detail-disclaimer {
+  background: #213329;
+  color: #bdc8b4;
+}
+.outline-button {
+  border-color: #617459;
+  color: var(--ink);
+}
+.enquiry-form input:not([type="checkbox"]),
+.enquiry-form select,
+.enquiry-form textarea {
+  background: #101e17;
+  border-color: #52644b;
+  color: var(--ink);
+}
+.enquiry-form input::placeholder,
+.enquiry-form textarea::placeholder {
+  color: #a4b199;
+  opacity: 1;
+}
+.enquiry-form input:autofill {
+  -webkit-box-shadow: 0 0 0 100px #233629 inset;
+  -webkit-text-fill-color: var(--ink);
+}
+.success-icon {
+  background: #344b32;
+  color: #d5dfbb;
+}
+@media (max-width: 800px) {
+  .hero-wash {
+    background:
+      linear-gradient(90deg, #0b181ded 0%, #0d191bae 52%, #0b181b50),
+      linear-gradient(0deg, #0b191bcc, transparent 50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-word {
+    color: var(--ink);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+  .scroll-word.word-sage {
+    color: var(--sage);
+    background: none;
+  }
+}
+@media (forced-colors: active) {
+  .scroll-word {
+    -webkit-text-fill-color: CanvasText;
+    background: none;
+  }
+  .primary-button,
+  .search-button,
+  .property-tabs button.active,
+  .contact-content > .primary-button {
+    border: 1px solid ButtonText;
+    color: ButtonText;
+  }
+}

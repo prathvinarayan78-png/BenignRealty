@@ -44,7 +44,12 @@ export function Founders() {
       </div>
       <div className="founders-grid">
         {founders.map((founder, index) => (
-          <article className="founder-card" key={founder.name} data-reveal>
+          <article
+            className="founder-card"
+            key={founder.name}
+            data-reveal
+            data-scroll-scene
+          >
             <div className="founder-portrait">
               {founder.portrait ? (
                 <img src={founder.portrait} alt={founder.name} loading="lazy" />

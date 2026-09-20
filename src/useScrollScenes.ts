@@ -50,13 +50,18 @@ export function useScrollScenes() {
           ? clamp(-heroRect.top / Math.max(1, heroRect.height - stageHeight))
           : 0;
       hero?.style.setProperty("--hero-progress", String(heroProgress));
+      const mobileProgress =
+        !pinned && !reduced.matches && heroRect
+          ? clamp(-heroRect.top / stageHeight)
+          : 0;
+      hero?.style.setProperty("--mobile-hero-progress", String(mobileProgress));
       if (heroImage) {
         const travel = pinned
           ? heroProgress * 24
-          : Math.min(window.scrollY, stageHeight) * 0.06;
+          : Math.min(window.scrollY, stageHeight) * 0.085;
         heroImage.style.transform = reduced.matches
           ? "none"
-          : `translate3d(0, ${travel}px, 0) scale(${1.035 + heroProgress * 0.13})`;
+          : `translate3d(0, ${travel}px, 0) scale(${1.035 + heroProgress * 0.13 + mobileProgress * 0.045})`;
       }
     };
     const schedule = () => {

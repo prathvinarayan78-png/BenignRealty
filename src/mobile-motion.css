@@ -1,0 +1,122 @@
+/* Touch-friendly scroll accents. No mobile pinning, opacity gates or wheel interception. */
+.journey-mobile-progress {
+  display: none;
+}
+@media (max-width: 900px), (pointer: coarse) {
+  .hero-scroll[data-pinned="false"] .hero-content {
+    transform: translate3d(0, calc(var(--mobile-hero-progress, 0) * -18px), 0);
+  }
+  .scroll-journey[data-pinned="false"] .journey-mobile-progress {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: sticky;
+    top: 86px;
+    z-index: 7;
+    gap: 12px;
+    margin-top: 27px;
+    padding: 9px 0 12px;
+    background: #1a2a24f2;
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .journey-mobile-progress button {
+    position: relative;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: left;
+  }
+  .journey-mobile-progress button[aria-current="step"] {
+    color: var(--accent);
+  }
+  .journey-mobile-number {
+    font-size: 8px;
+    color: var(--sage);
+  }
+  .journey-mobile-track {
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .journey-mobile-track > span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    transform-origin: left;
+  }
+  .scroll-journey[data-pinned="false"] .journey-panels {
+    margin-top: 24px;
+  }
+  .scroll-journey[data-pinned="false"] .journey-image img {
+    transform: translate3d(
+        0,
+        calc((var(--chapter-progress, 0.5) - 0.5) * -34px),
+        0
+      )
+      scale(calc(1.12 - var(--chapter-progress, 0.5) * 0.04));
+  }
+  .scroll-journey[data-pinned="false"] .journey-image-index {
+    transform: translate3d(
+      0,
+      calc((var(--chapter-progress, 0.5) - 0.5) * -20px),
+      0
+    );
+  }
+  .scroll-journey[data-pinned="false"] .journey-image::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 2;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(var(--chapter-read, 0));
+    transform-origin: left;
+  }
+  .founder-initials {
+    transform: translate3d(
+      0,
+      calc((var(--scene-progress, 0.5) - 0.5) * -22px),
+      0
+    );
+  }
+  .founder-placeholder-frame {
+    transform: scale(calc(0.96 + var(--scene-progress, 0.5) * 0.04));
+  }
+}
+@media (max-width: 560px) {
+  .scroll-journey[data-pinned="false"] .journey-mobile-progress {
+    top: 76px;
+    gap: 10px;
+  }
+  .journey-mobile-progress button {
+    font-size: 10px;
+    gap: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll[data-pinned="false"] .hero-content,
+  .scroll-journey[data-pinned="false"] .journey-image img,
+  .scroll-journey[data-pinned="false"] .journey-image-index,
+  .founder-initials,
+  .founder-placeholder-frame {
+    transform: none;
+  }
+  .journey-mobile-track,
+  .scroll-journey[data-pinned="false"] .journey-image::before {
+    display: none;
+  }
+}
+@media (max-width: 900px), (pointer: coarse) {
+  .journey-mobile-progress button > span:nth-child(2) {
+    text-transform: capitalize;
+  }
+}

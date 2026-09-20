@@ -26,7 +26,7 @@ Used as a Delhi editorial/context image, not as property imagery.
 
 - Manrope: self-hosted through `@fontsource/manrope`, SIL Open Font License.
 - Lucide icons: `lucide-react`, ISC licence.
-- Benign monogram and favicon: original SVG artwork created for this project. The signature combines an original interlocking BR monogram with a precision-spaced Manrope wordmark and a fine divider. The header uses deep green and muted champagne; the footer uses ivory and champagne. No ornamental arch or enclosing badge is used in the primary mark.
+- Benign monogram and favicon: original SVG artwork created for this project. The signature combines an original interlocking BR monogram with a precision-spaced Manrope wordmark and a fine divider. The default dark website renders the header and footer mark in ivory and muted champagne. The standalone SVG remains the deep-green/champagne version for light-background uses. No ornamental arch or enclosing badge is used in the primary mark.
 - `public/brand/benign-monogram.svg` is the standalone, scalable emblem; `public/favicon.svg` is its small-format companion.
 
 ## Design reference

@@ -6,6 +6,8 @@ import "@fontsource/manrope/latin-600.css";
 import "@fontsource/manrope/latin-700.css";
 import "lenis/dist/lenis.css";
 import "./styles.css";
+import "./theme.css";
+import "./mobile-motion.css";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
