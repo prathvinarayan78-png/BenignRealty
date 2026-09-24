@@ -4027,6 +4027,28 @@ h2 > span {
   background: #e8ebe2;
   overflow: hidden;
 }
+.founder-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+  display: block;
+}
+.founder-portrait::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(0deg, #06120dd4, transparent);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.founder-portrait[data-photo="true"]::after {
+  opacity: 1;
+}
 .founder-photo-placeholder {
   position: absolute;
   inset: 0;

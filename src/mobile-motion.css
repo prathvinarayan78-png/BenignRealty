@@ -88,6 +88,14 @@
       0
     );
   }
+  .founder-portrait img {
+    transform: translate3d(
+        0,
+        calc((var(--scene-progress, 0.5) - 0.5) * -16px),
+        0
+      )
+      scale(1.07);
+  }
   .founder-placeholder-frame {
     transform: scale(calc(0.96 + var(--scene-progress, 0.5) * 0.04));
   }
@@ -107,6 +115,7 @@
   .scroll-journey[data-pinned="false"] .journey-image img,
   .scroll-journey[data-pinned="false"] .journey-image-index,
   .founder-initials,
+  .founder-portrait img,
   .founder-placeholder-frame {
     transform: none;
   }

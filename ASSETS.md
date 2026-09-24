@@ -11,6 +11,14 @@ The following visuals were generated specifically for this Benign Realty design 
 
 They are architectural illustrations, **not photographs of actual available Benign Realty properties**. This is disclosed in the collection, property details and information dialog.
 
+## Founder portraits
+
+`public/images/founders/talib-khan.jpg` and `public/images/founders/prathvi-narayan.jpg` are the founders' own photographs — Talib Khan and Prathvi Narayan respectively.
+
+- Published **exactly as supplied**: no generation, no re-encoding, no retouching, no sub-editing of the files themselves.
+- The website only styles the presentation: the card crops the frame with `object-fit: cover` inside a 4:5 portrait, and a dark scrim sits behind the small index line for contrast.
+- While a portrait file is absent, `src/Founders.tsx` falls back to the reserved portrait frame — the section never shows a broken image or a stand-in face.
+
 ## Delhi photography
 
 `public/images/delhi.jpg` depicts India Gate framed by trees.

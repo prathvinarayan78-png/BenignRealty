@@ -27,15 +27,35 @@ test("founders have reserved portraits and an original thought about home", asyn
     section.getByRole("heading", { name: "Prathvi Narayan", exact: true }),
   ).toBeVisible();
   await expect(section.getByText("Co-founder", { exact: true })).toHaveCount(2);
-  await expect(
-    section.getByRole("img", { name: "Photo space reserved for Talib Khan" }),
-  ).toBeVisible();
-  await expect(
-    section.getByRole("img", {
-      name: "Photo space reserved for Prathvi Narayan",
-    }),
-  ).toBeVisible();
-  await expect(section.locator("img")).toHaveCount(0);
+  // Each founder card shows their own supplied photograph, or the reserved
+  // frame while that file is still missing. Never a broken image.
+  for (const [slot, name] of [
+    [section.locator(".founder-portrait").nth(0), "Talib Khan"],
+    [section.locator(".founder-portrait").nth(1), "Prathvi Narayan"],
+  ] as const) {
+    await expect
+      .poll(async () => {
+        if (await slot.locator("img").count()) return "photo";
+        if (await slot.locator(".founder-photo-placeholder").count())
+          return "reserved";
+        return "pending";
+      })
+      .not.toBe("pending");
+    if (await slot.locator("img").count()) {
+      await expect(slot.locator("img")).toHaveAttribute("alt", name);
+      await expect(slot).toHaveAttribute("data-photo", "true");
+      await expect
+        .poll(() =>
+          slot.locator("img").evaluate((node) => (node as HTMLImageElement).naturalWidth),
+        )
+        .toBeGreaterThan(0);
+    } else {
+      await expect(
+        slot.getByRole("img", { name: `Photo space reserved for ${name}` }),
+      ).toBeVisible();
+      await expect(slot).toHaveAttribute("data-photo", "false");
+    }
+  }
   await expect(section.locator(".founder-thought")).toHaveCount(2);
   await expect(section).toContainText("where life begins to feel like our own");
   await expect(section).toContainText("room to grow, a place to pause");

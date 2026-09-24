@@ -364,6 +364,10 @@ h2 > span,
 .founder-portrait-index {
   color: #bcc7ae;
 }
+.founder-portrait[data-photo="true"] .founder-portrait-index {
+  color: #f1ecdd;
+  text-shadow: 0 1px 12px #04120cb0;
+}
 .contact-section {
   background: #16251f;
 }
