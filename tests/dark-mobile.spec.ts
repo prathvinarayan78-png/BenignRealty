@@ -52,7 +52,7 @@ test("dark is the first-load default for both light and dark device preferences"
       ".properties-section",
       ".scroll-journey",
       ".delhi-section",
-      ".founders-section",
+      ".standards-section",
       ".contact-section",
       ".site-footer",
     ]) {
@@ -129,7 +129,7 @@ test("the mobile chapter guide tracks both scroll directions and its shortcuts w
   });
   const first = guide.getByRole("button", { name: /01 possibility/i });
   const second = guide.getByRole("button", { name: /02 perspective/i });
-  const third = guide.getByRole("button", { name: /03 belonging/i });
+  const last = guide.getByRole("button", { name: /05 belonging/i });
   await scrollAt(page, "#journey-chapter-1", 0.3);
   await expect(first).toHaveAttribute("aria-current", "step");
   await scrollAt(page, "#journey-chapter-2", 0.3);
@@ -149,16 +149,16 @@ test("the mobile chapter guide tracks both scroll directions and its shortcuts w
   await expect.poll(progress).toBeGreaterThan(before);
   await scrollAt(page, "#journey-chapter-1", 0.3);
   await expect(first).toHaveAttribute("aria-current", "step");
-  await third.click();
-  await expect(third).toHaveAttribute("aria-current", "step");
+  await last.click();
+  await expect(last).toHaveAttribute("aria-current", "step");
   await expect
     .poll(() =>
       page
-        .locator("#journey-chapter-3")
+        .locator("#journey-chapter-5")
         .evaluate((el) => Math.round(el.getBoundingClientRect().top)),
     )
     .toBeLessThan(180);
-  await expect(page.locator("#journey-chapter-3 h3")).toBeInViewport();
+  await expect(page.locator("#journey-chapter-5 h3")).toBeInViewport();
   await first.click();
   await expect(first).toHaveAttribute("aria-current", "step");
   await expect
@@ -192,39 +192,36 @@ test("additional mobile depth remains subtle and stops for reduced motion", asyn
     "data-pinned",
     "false",
   );
-  await scrollAt(page, ".founder-card", 0.65);
+  await scrollAt(page, ".standards-section", 0.65);
   await expect
     .poll(() =>
       page
-        .locator(".founder-card")
-        .first()
+        .locator(".standards-section")
         .evaluate((el) =>
           parseFloat(getComputedStyle(el).getPropertyValue("--scene-progress")),
         ),
     )
     .toBeGreaterThan(0);
-  const before = await page
-    .locator(".founder-initials")
-    .first()
+  const filledLater = await page
+    .locator(".standards-rail > span")
     .evaluate((el) => getComputedStyle(el).transform);
-  await scrollAt(page, ".founder-card", 0.15);
+  await scrollAt(page, ".standards-section", 0.15);
   await expect
     .poll(() =>
       page
-        .locator(".founder-initials")
-        .first()
+        .locator(".standards-rail > span")
         .evaluate((el) => getComputedStyle(el).transform),
     )
-    .not.toBe(before);
-  await expect(page.locator(".founder-card").first()).toHaveCSS("opacity", "1");
+    .not.toBe(filledLater);
+  await expect(page.locator(".standard-item").first()).toHaveCSS("opacity", "1");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".founder-initials").first()).toHaveCSS(
+  await expect(page.locator(".standards-rail > span")).toHaveCSS(
     "transform",
-    "none",
+    "matrix(1, 0, 0, 1, 0, 0)",
   );
-  await expect(page.locator(".founder-placeholder-frame").first()).toHaveCSS(
-    "transform",
-    "none",
+  await expect(page.locator(".standard-heading > svg").first()).toHaveCSS(
+    "opacity",
+    "1",
   );
   await expect(
     page.locator(".journey-chapter .journey-image img").first(),

@@ -1,0 +1,278 @@
+/* Option feedback: every selectable row, chip, step and link answers the pointer.
+   Motion is transform/opacity only, honours reduced motion, and never hides
+   content — the page stays readable with or without these responses.
+   Loaded last so it refines the base and dark layers rather than replacing them. */
+
+/* ---------- Collection tabs ---------- */
+.property-tabs button {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.35s,
+    color 0.35s,
+    transform 0.35s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.property-tabs button::after {
+  content: "";
+  position: absolute;
+  inset: auto 12px 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.property-tabs .tab-dot {
+  transition: transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+/* ---------- Expertise rows ---------- */
+.service-toggle {
+  position: relative;
+  transition:
+    padding 0.4s cubic-bezier(0.2, 0.65, 0.3, 1),
+    color 0.35s;
+}
+.service-toggle::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.45s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.service-toggle .service-number {
+  transition:
+    color 0.35s,
+    transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.service-toggle > svg {
+  transition: transform 0.45s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+/* ---------- Journey steps ---------- */
+.journey-navigation button,
+.journey-mobile-progress button {
+  transition:
+    color 0.35s,
+    transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.journey-navigation button > span:not(.journey-step-number):not(.journey-step-track),
+.journey-mobile-progress button > span:nth-child(2) {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.journey-navigation button > svg {
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1),
+    opacity 0.35s;
+}
+.journey-step-number,
+.journey-mobile-number {
+  transition: color 0.35s;
+}
+.journey-step-track > span {
+  transition: transform 0.45s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+/* ---------- Neighbourhood options ---------- */
+.neighbourhoods > button {
+  position: relative;
+  transition:
+    color 0.35s,
+    transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.neighbourhoods > button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.neighbourhoods > button svg {
+  transition: transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+/* ---------- Navigation and footer links ---------- */
+.desktop-nav a,
+.footer-links a,
+.footer-links button {
+  transition:
+    color 0.3s,
+    transform 0.35s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.footer-links a,
+.footer-links button {
+  position: relative;
+}
+.footer-links a::after,
+.footer-links button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.footer-links a svg,
+.footer-links button svg {
+  transition: transform 0.35s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+/* ---------- Cards and buttons ---------- */
+.property-card {
+  transition: transform 0.5s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.primary-button,
+.search-button,
+.talk-button,
+.round-link,
+.text-link {
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Collection tabs */
+  .property-tabs button:hover {
+    transform: translateY(-2px);
+  }
+  .property-tabs button:hover::after {
+    transform: scaleX(1);
+  }
+  .property-tabs button:hover .tab-dot {
+    transform: scale(1.35);
+  }
+  /* Expertise rows */
+  .service-toggle:hover {
+    padding-left: 14px;
+  }
+  .service-toggle:hover::before {
+    transform: scaleY(1);
+  }
+  .service-toggle:hover .service-number {
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .service-toggle:hover > svg {
+    transform: rotate(90deg);
+  }
+  /* Journey steps */
+  .journey-navigation button:hover {
+    transform: translateX(6px);
+  }
+  .journey-navigation button:hover
+    > span:not(.journey-step-number):not(.journey-step-track) {
+    transform: translateX(3px);
+  }
+  .journey-navigation button:hover .journey-step-number {
+    color: var(--accent);
+  }
+  .journey-navigation button:hover > svg {
+    opacity: 1;
+    transform: translate(3px, -3px);
+  }
+  /* Neighbourhood options */
+  .neighbourhoods > button:hover {
+    transform: translateY(-2px);
+  }
+  .neighbourhoods > button:hover::after {
+    transform: scaleX(1);
+  }
+  .neighbourhoods > button:hover svg {
+    transform: translate(3px, -3px);
+  }
+  /* Links */
+  .footer-links a:hover,
+  .footer-links button:hover {
+    transform: translateX(4px);
+  }
+  .footer-links a:hover::after,
+  .footer-links button:hover::after {
+    transform: scaleX(1);
+  }
+  .footer-links a:hover svg,
+  .footer-links button:hover svg {
+    transform: translate(2px, -2px);
+  }
+  /* Cards */
+  .property-card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* Touch: there is no hover, so the press carries the same response. */
+@media (hover: none), (pointer: coarse) {
+  .service-toggle:active {
+    padding-left: 10px;
+  }
+  .service-toggle:active .service-number {
+    color: var(--accent);
+  }
+  .journey-navigation button:active,
+  .journey-mobile-progress button:active {
+    transform: translateX(4px);
+  }
+  .journey-mobile-progress button:active .journey-mobile-number {
+    color: var(--accent);
+  }
+  .neighbourhoods > button:active {
+    transform: translateY(-2px);
+  }
+  .neighbourhoods > button:active::after {
+    transform: scaleX(1);
+  }
+  .property-tabs button:active {
+    transform: translateY(-2px);
+  }
+  .footer-links a:active,
+  .footer-links button:active {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+  .property-card:active {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-toggle:hover,
+  .service-toggle:active,
+  .journey-navigation button:hover,
+  .journey-navigation button:active,
+  .journey-mobile-progress button:active,
+  .neighbourhoods > button:hover,
+  .neighbourhoods > button:active,
+  .footer-links a:hover,
+  .footer-links button:hover,
+  .property-card:hover,
+  .property-tabs button:hover {
+    transform: none;
+  }
+  /* Static feedback instead of motion: underlines appear, nothing travels. */
+  .property-tabs button:hover::after,
+  .neighbourhoods > button:hover::after,
+  .footer-links a:hover::after,
+  .footer-links button:hover::after {
+    transform: scaleX(1);
+  }
+  .service-toggle:hover::before {
+    transform: scaleY(1);
+  }
+  .service-toggle:hover > svg {
+    transform: none;
+  }
+}

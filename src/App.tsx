@@ -30,7 +30,7 @@ import {
 import { properties, services, type Property } from "./data";
 import { useScrollScenes } from "./useScrollScenes";
 import { ScrollJourney } from "./ScrollJourney";
-import { Founders } from "./Founders";
+import { Standards } from "./Standards";
 
 type Modal =
   | { kind: "property"; property: Property }
@@ -303,7 +303,7 @@ function App() {
           <a href="#about">Our story</a>
           <a href="#properties">Properties</a>
           <a href="#expertise">Our expertise</a>
-          <a href="#founders">The founders</a>
+          <a href="#standards">Our standard</a>
           <a href="#delhi">
             Delhi & NCR <span className="nav-dot" />
           </a>
@@ -348,7 +348,7 @@ function App() {
             ["Our story", "#about"],
             ["Properties", "#properties"],
             ["Our expertise", "#expertise"],
-            ["The founders", "#founders"],
+            ["Our standard", "#standards"],
             ["Delhi & NCR", "#delhi"],
           ].map(([text, link]) => (
             <a
@@ -917,7 +917,7 @@ function App() {
           </div>
         </section>
 
-        <Founders />
+        <Standards onTalk={(interest) => openContact(interest)} />
 
         <section
           className="contact-section section-shell"
@@ -967,7 +967,7 @@ function App() {
             <a href="#about">Our story</a>
             <a href="#properties">Our collection</a>
             <a href="#expertise">Our expertise</a>
-            <a href="#founders">The founders</a>
+            <a href="#standards">Our standard</a>
             <button onClick={() => openContact()}>
               Get in touch <ArrowUpRight size={14} />
             </button>

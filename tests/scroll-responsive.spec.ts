@@ -101,7 +101,7 @@ test("journey follows scroll, reverses, and supports chapter navigation", async 
     await expect(journey).toHaveAttribute("data-pinned", "true");
     for (const [position, title] of [
       [0.12, "First, we listen."],
-      [0.5, "Then, we look closer."],
+      [0.5, "Fewer, better options."],
       [0.86, "A place to make yours."],
       [0.12, "First, we listen."],
     ] as const) {
@@ -117,7 +117,7 @@ test("journey follows scroll, reverses, and supports chapter navigation", async 
         )
         .toBe(86);
     }
-    await page.getByRole("button", { name: "03 The belonging" }).click();
+    await page.getByRole("button", { name: "05 The belonging" }).click();
     await expect(page.locator(".journey-chapter.is-current h3")).toHaveText(
       "A place to make yours.",
     );
@@ -268,18 +268,18 @@ test("journey image wipes scrub continuously and reverse without timers", async 
       "data-pinned",
       "true",
     );
-    await scrollScene(page, "#journey", 0.3);
+    await scrollScene(page, "#journey", 0.17);
     await expect
       .poll(() => propertyValue(page, second, "--chapter-wipe"))
       .toBeGreaterThan(0.2);
     expect(await propertyValue(page, second, "--chapter-wipe")).toBeLessThan(
       0.7,
     );
-    await scrollScene(page, "#journey", 0.42);
+    await scrollScene(page, "#journey", 0.26);
     await expect
       .poll(() => propertyValue(page, second, "--chapter-wipe"))
       .toBe(1);
-    await scrollScene(page, "#journey", 0.22);
+    await scrollScene(page, "#journey", 0.1);
     await expect
       .poll(() => propertyValue(page, second, "--chapter-wipe"))
       .toBe(0);

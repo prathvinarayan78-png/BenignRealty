@@ -8,6 +8,7 @@ import "lenis/dist/lenis.css";
 import "./styles.css";
 import "./theme.css";
 import "./mobile-motion.css";
+import "./interactions.css";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

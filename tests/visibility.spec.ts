@@ -26,7 +26,7 @@ async function inspectBelowStory(page: Page) {
     "#journey",
     "#expertise",
     "#delhi",
-    "#founders",
+    "#standards",
     "#contact",
     ".site-footer",
   ]) {
@@ -80,8 +80,12 @@ for (const mode of ["silent", "unavailable"] as const) {
     await expect(page.locator("[data-reveal].is-visible")).toHaveCount(0);
     await expectReadableSections(page);
     await inspectBelowStory(page);
-    await expect(page.locator("#founders")).toContainText("Talib Khan");
-    await expect(page.locator("#founders")).toContainText("Prathvi Narayan");
+    await expect(page.locator("#standards")).toContainText(
+      "Rooted in Delhi & NCR.",
+    );
+    await expect(page.locator("#standards")).toContainText(
+      "Your decision stays yours.",
+    );
     await page.getByRole("button", { name: "Let’s talk", exact: true }).click();
     await expect(page.getByRole("dialog")).toBeVisible();
     expect(errors).toEqual([]);

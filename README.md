@@ -28,9 +28,9 @@ Deploy `dist/` to any static hosting provider. No API or database is needed for 
 - Section copy is visible by default. Optional entrance motion never hides it or depends on an IntersectionObserver callback to make it readable.
 - Reversible collection-image reveals, scroll-linked brand typography, a moving editorial text band, Delhi parallax, a settling closing composition and a page-reading progress indicator.
 - A three-chapter, scroll-driven journey with a sticky desktop stage, continuous image wipes, reversible chapter progression and keyboard-accessible chapter controls. Touch devices, short viewports and reduced-motion users get all three chapters in normal document flow.
-- Subtle mobile scroll depth in the hero, journey imagery and founder placeholders, plus a sticky chapter guide with live reading progress and working chapter shortcuts. Mobile stays in natural document flow; reduced-motion disables the added movement.
+- Subtle mobile scroll depth in the hero, journey imagery, standard rows and cards, plus a sticky chapter guide with live reading progress and working chapter shortcuts. Mobile stays in natural document flow; reduced-motion disables the added movement.
 - Mobile-first refinements: single-column phone property finder, two-column tablet collections, readable type, 44px controls, 16px form fields, scrollable dialogs with a sticky close button, and a focus-managed, scroll-locking mobile menu.
-- A founders section introducing Talib Khan and Prathvi Narayan, with reserved portrait spaces and original editorial thoughts on home. Set each `portrait` path in `src/Founders.tsx` when approved photos are available.
+- A five-chapter scroll journey, and a sticky “Benign standard” section whose promise lines scrub as the page moves. Each promise is a real option: choosing one opens the enquiry dialog with that topic attached.
 - Six **illustrative** property concepts with location, residential/commercial and indicative-budget filters.
 - Saved properties persisted locally, including an empty state and saved-only filtering.
 - Accessible native property dialogs, service accordions, neighbourhood shortcuts and responsive navigation.
@@ -63,7 +63,7 @@ When testing with an existing Chromium binary, set `CHROMIUM_PATH=/path/to/chrom
 ## Structure
 
 - `src/App.tsx` — page sections, browsing, saved collection and native dialogs
-- `src/Founders.tsx` — founder names, portrait placeholders and editorial home thoughts
+- `src/Standards.tsx` — the three published promises and their scrubbed option rows
 - `src/ScrollJourney.tsx` — responsive scroll-driven journey with static/touch fallbacks
 - `src/useScrollScenes.ts` — frame-batched progress, text-reveal and parallax updates
 - `src/data.ts` — illustrative property concepts and service copy

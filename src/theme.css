@@ -154,8 +154,7 @@ select option {
 h2 > span,
 .journey-intro > h2 > span,
 .delhi-content h2 > span,
-.contact-content > h2 > span,
-.founders-intro h2 > span {
+.contact-content > h2 > span {
   color: var(--sage);
 }
 .section-kicker,
@@ -193,8 +192,7 @@ h2 > span,
 .service,
 .service-note,
 .service-tags > span,
-.neighbourhoods > button,
-.founder-name-row {
+.neighbourhoods > button {
   border-color: var(--line);
 }
 .property-tabs button,
@@ -256,7 +254,7 @@ h2 > span,
   color: var(--sage);
 }
 
-/* Journey, city, founders and the closing composition. */
+/* Journey, city, standards and the closing composition. */
 .perspective-ribbon {
   background: #0c1714;
   border-block: 1px solid #344538;
@@ -316,57 +314,6 @@ h2 > span,
 }
 .delhi-image-overlay {
   background: linear-gradient(0deg, #08140fee, transparent 70%, #0a171c40);
-}
-.founders-section {
-  background: #121f1b;
-}
-.founders-intro .section-kicker,
-.founders-intro > p,
-.founders-signature,
-.founder-name-row > span,
-.founder-thought .eyebrow,
-.founder-thought p {
-  color: var(--muted);
-}
-.founders-signature-line {
-  background: var(--accent);
-}
-.founder-portrait {
-  background: #233229;
-}
-.founder-photo-placeholder {
-  background: radial-gradient(
-    ellipse at 30% 20%,
-    #354537 0%,
-    #24352a 65%,
-    #1d2d23
-  );
-}
-.founder-card:nth-child(2) .founder-photo-placeholder {
-  background: radial-gradient(
-    ellipse at 70% 20%,
-    #3a4033 0%,
-    #2a3226 65%,
-    #222c21
-  );
-}
-.founder-placeholder-frame {
-  border-color: #9baa8450;
-}
-.founder-placeholder-frame::before,
-.founder-placeholder-frame::after {
-  border-color: #c0b28b;
-}
-.founder-initials {
-  color: #b7c3a36b;
-}
-.founder-photo-label,
-.founder-portrait-index {
-  color: #bcc7ae;
-}
-.founder-portrait[data-photo="true"] .founder-portrait-index {
-  color: #f1ecdd;
-  text-shadow: 0 1px 12px #04120cb0;
 }
 .contact-section {
   background: #16251f;
@@ -480,10 +427,62 @@ h2 > span,
     background: none;
   }
   .primary-button,
-  .search-button,
-  .property-tabs button.active,
-  .contact-content > .primary-button {
+.search-button,
+.property-tabs button.active,
+.contact-content > .primary-button {
     border: 1px solid ButtonText;
     color: ButtonText;
+  }
+}
+
+/* The Benign standard: dark surface, same scrubbed lines. */
+.standards-section {
+  background: #121f1b;
+}
+.standards-intro h2 > span {
+  color: var(--sage);
+}
+.standards-intro > p,
+.standards-count,
+.standard-copy,
+.standard-item-index {
+  color: var(--muted);
+}
+.standards-rail {
+  background: var(--line);
+}
+.standards-rail > span,
+.standard-item::before {
+  background: var(--accent);
+}
+.standard-item,
+.standard-item:last-child {
+  border-color: var(--line);
+}
+.standard-number {
+  color: #8fa08d;
+}
+.standard-title {
+  color: var(--ink);
+}
+.standard-detail {
+  color: var(--sage);
+}
+.standard-sweep {
+  background: linear-gradient(90deg, #1f3329 0%, #1a2b23 62%, #121f1b 100%);
+}
+@media (hover: hover) and (pointer: fine) {
+  .standard-option:hover .standard-number,
+  .standard-option:focus-visible .standard-number {
+    color: var(--accent);
+  }
+  .standard-option:hover .standard-copy,
+  .standard-option:focus-visible .standard-copy {
+    color: #e3e9df;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .standard-option:active .standard-number {
+    color: var(--accent);
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { STORY_VIEWPORT } from "./useScrollScenes";
 
@@ -15,9 +15,25 @@ const chapters = [
     label: "The perspective",
     title: "Then, we look closer.",
     text: "Beyond the floor plan, into the neighbourhood. We help you weigh the location, the everyday details and the questions worth asking.",
+    image: "/images/delhi.jpg",
+    alt: "India Gate framed by leafy trees in New Delhi",
+    detail: "LOCAL KNOWLEDGE. A CLEARER PICTURE.",
+  },
+  {
+    label: "The shortlist",
+    title: "Fewer, better options.",
+    text: "A considered short list, shaped around your brief — not a scroll of everything on the market. We leave out what doesn’t fit, so the choice stays clear.",
     image: "/images/villa.webp",
     alt: "A contemporary residence set within a landscaped garden",
-    detail: "LOCAL KNOWLEDGE. A CLEARER PICTURE.",
+    detail: "SHORTER LISTS. BETTER FIT.",
+  },
+  {
+    label: "The details",
+    title: "Then, the questions worth asking.",
+    text: "Before you commit, we go through it together: what is confirmed, what still needs checking, and what that means for your decision. Independent legal and financial advice remains essential.",
+    image: "/images/commercial.webp",
+    alt: "A contemporary office building against an open sky",
+    detail: "CLARITY BEFORE COMMITMENT.",
   },
   {
     label: "The belonging",
@@ -58,7 +74,10 @@ export function ScrollJourney({
       const measurements = Array.from(
         element.querySelectorAll<HTMLElement>(".journey-chapter"),
       ).map((chapter) => ({ chapter, rect: chapter.getBoundingClientRect() }));
-      let current = Math.min(2, Math.floor(progress * 3));
+      let current = Math.min(
+        chapters.length - 1,
+        Math.floor(progress * chapters.length),
+      );
       if (!enabled) {
         current = 0;
         measurements.forEach(({ rect }, index) => {
@@ -69,7 +88,7 @@ export function ScrollJourney({
       setActive(current);
       measurements.forEach(({ chapter, rect: chapterRect }, index) => {
         const local = enabled
-          ? Math.max(0, Math.min(1, progress * 3 - index))
+          ? Math.max(0, Math.min(1, progress * chapters.length - index))
           : reduced.matches
             ? 1
             : Math.max(
@@ -95,7 +114,13 @@ export function ScrollJourney({
         const wipe =
           !enabled || index === 0
             ? 1
-            : Math.max(0, Math.min(1, (progress - index / 3 + 0.065) / 0.09));
+            : Math.max(
+            0,
+            Math.min(
+              1,
+              (progress - index / chapters.length + 0.065) / 0.09,
+            ),
+          );
         chapter.style.setProperty("--chapter-wipe", String(wipe));
       });
     };
@@ -140,7 +165,7 @@ export function ScrollJourney({
     }
     const top = root.current.getBoundingClientRect().top + window.scrollY;
     const travel = root.current.offsetHeight - (window.innerHeight - 86);
-    onNavigate(top - 86 + (index / 3 + 0.08) * travel);
+    onNavigate(top - 86 + (index / chapters.length + 0.08) * travel);
   };
 
   return (
@@ -149,6 +174,7 @@ export function ScrollJourney({
       id="journey"
       ref={root}
       data-pinned={pinned}
+      style={{ "--journey-steps": chapters.length } as CSSProperties}
       aria-labelledby="journey-title"
     >
       <div className="journey-stage">
@@ -183,7 +209,7 @@ export function ScrollJourney({
                   <span className="journey-step-track" aria-hidden="true">
                     <span
                       style={{
-                        transform: `scaleX(clamp(0, calc(var(--journey-progress, 0) * 3 - ${index}), 1))`,
+                        transform: `scaleX(clamp(0, calc(var(--journey-progress, 0) * ${chapters.length} - ${index}), 1))`,
                       }}
                     />
                   </span>

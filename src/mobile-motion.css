@@ -8,7 +8,7 @@
   }
   .scroll-journey[data-pinned="false"] .journey-mobile-progress {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--journey-steps, 3), minmax(0, 1fr));
     position: sticky;
     top: 86px;
     z-index: 7;
@@ -81,24 +81,6 @@
     transform: scaleX(var(--chapter-read, 0));
     transform-origin: left;
   }
-  .founder-initials {
-    transform: translate3d(
-      0,
-      calc((var(--scene-progress, 0.5) - 0.5) * -22px),
-      0
-    );
-  }
-  .founder-portrait img {
-    transform: translate3d(
-        0,
-        calc((var(--scene-progress, 0.5) - 0.5) * -16px),
-        0
-      )
-      scale(1.07);
-  }
-  .founder-placeholder-frame {
-    transform: scale(calc(0.96 + var(--scene-progress, 0.5) * 0.04));
-  }
 }
 @media (max-width: 560px) {
   .scroll-journey[data-pinned="false"] .journey-mobile-progress {
@@ -110,13 +92,36 @@
     gap: 5px;
   }
 }
+@media (max-width: 560px) {
+  /* Five steps on a phone: numbers and tracks stay, the words would not fit. */
+  .scroll-journey[data-pinned="false"] .journey-mobile-progress {
+    gap: 6px;
+  }
+  .journey-mobile-progress button {
+    justify-content: center;
+    font-size: 9px;
+  }
+  /* Words would not fit, so they are hidden visually only: the chapter name
+     stays in the accessible name for screen readers. */
+  .journey-mobile-progress button > span:nth-child(2) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .journey-mobile-number {
+    font-size: 9px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .hero-scroll[data-pinned="false"] .hero-content,
   .scroll-journey[data-pinned="false"] .journey-image img,
-  .scroll-journey[data-pinned="false"] .journey-image-index,
-  .founder-initials,
-  .founder-portrait img,
-  .founder-placeholder-frame {
+  .scroll-journey[data-pinned="false"] .journey-image-index {
     transform: none;
   }
   .journey-mobile-track,
